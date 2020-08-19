@@ -17,6 +17,12 @@ class MovimientoSqlite : Movimientoutilidades {
         return recorrerCursor(cursor)
     }
 
+    fun consultarPorFlujo(context: Context?, flujo: Int): ArrayList<Movimiento> {
+        val consultaSqlite: String? = porFlujo(flujo)
+        val cursor = SqliteInterfas().select(context, consultaSqlite)
+        return recorrerCursor(cursor)
+    }
+
     fun borrar(context: Context?, modelo: Movimiento): Boolean {
         val parametros =
             arrayOf<String?>(modelo.idMovimiento.toString() + "")
@@ -47,11 +53,11 @@ class MovimientoSqlite : Movimientoutilidades {
         val values = ContentValues()
         if(modelo != null)
         {
-            values.put(Movimiento.ID_MOVIMIENTO, modelo.idMovimiento)
             values.put(Movimiento.VALOR_MOVIMIENTO, modelo.valorMovimiento)
             values.put(Movimiento.DESCRIPCION, modelo.descripcion)
             values.put(Movimiento.FECHA_MOVIMIENTO, modelo.fechaMovimiento)
             values.put(Movimiento.TIPO_MOVIMIENTO, modelo.tipoMovimiento)
+            values.put(Movimiento.FLUJO, modelo.flujo)
         }
         return values
     }
@@ -63,6 +69,7 @@ class MovimientoSqlite : Movimientoutilidades {
         modelo.descripcion = cursor.getString(2)
         modelo.fechaMovimiento = cursor.getString(3)
         modelo.tipoMovimiento = cursor.getInt(4)
+        modelo.idMovimiento = cursor.getInt(5)
         return modelo
     }
 }

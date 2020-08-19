@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.empresa.finanzas1.ui.home.HomeFragment"
+        android:name="com.empresa.finanzas1.ui.home.VistaGeneralFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/vista_general" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.empresa.finanzas1.ui.gallery.GalleryFragment"
+        android:name="com.empresa.finanzas1.ui.registrar_movimiento.RegistrarFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/registrar_movimiento" />
 
     <fragment
         android:id="@+id/nav_slideshow"
