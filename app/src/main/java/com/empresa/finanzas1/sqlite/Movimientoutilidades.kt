@@ -7,10 +7,14 @@ interface Movimientoutilidades {
         get() = "movimiento"
 
     val consulta: String
-        get() = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + Movimiento.ID_MOVIMIENTO + " DESC"
+        get() = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + Movimiento.ID_MOVIMIENTO + " ASC"
 
     fun porFlujo(flujo: Int): String? {
         return "SELECT * FROM " + TABLE_NAME + " where " + Movimiento.FLUJO + "=" + flujo + " ORDER BY " + Movimiento.ID_MOVIMIENTO + " DESC"
+    }
+
+    fun porRangoDeFecha(fechaA: String, fechaB: String): String? {
+        return "SELECT * FROM " + TABLE_NAME + " where " + Movimiento.FECHA_MOVIMIENTO + ">=" + fechaA  + " AND ${Movimiento.FECHA_MOVIMIENTO} <= $fechaB ORDER BY " + Movimiento.ID_MOVIMIENTO + " DESC"
     }
 
     val drop_table: String

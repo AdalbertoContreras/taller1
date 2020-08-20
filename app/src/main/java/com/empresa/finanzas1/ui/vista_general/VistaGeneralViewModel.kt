@@ -1,4 +1,4 @@
-package com.empresa.finanzas1.ui.home
+package com.empresa.finanzas1.ui.vista_general
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

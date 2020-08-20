@@ -1,4 +1,4 @@
-package com.empresa.finanzas1.ui.home
+package com.empresa.finanzas1.ui.vista_general
 
 import android.os.Bundle
 import android.view.LayoutInflater

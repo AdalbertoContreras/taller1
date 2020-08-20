@@ -33,8 +33,11 @@ class ConexionSQLiteHelper
      */
     override fun onCreate(db: SQLiteDatabase) {
         try {
-
+            /*
+            Crear tablas
+             */
             db.execSQL(MovimientoSqlite().SQL_CREATE_ENTRIES)
+            db.execSQL(TipoMovimientoSqlite().SQL_CREATE_ENTRIES)
         } catch (e: SQLException) {
             Log.d("sqlite", "base de datos no creada")
         }
@@ -67,12 +70,19 @@ class ConexionSQLiteHelper
         oldVersion: Int,
         newVersion: Int
     ) {
+        /*
+        Borrar tablas
+         */
         db.execSQL(MovimientoSqlite().drop_table)
+        db.execSQL(TipoMovimientoSqlite().drop_table)
+        /*
+        Crear tablas
+         */
         onCreate(db)
     }
 
     companion object {
         private const val nombre_database = "app_cobrador"
-        private const val version_database = 2
+        private const val version_database = 3
     }
 }

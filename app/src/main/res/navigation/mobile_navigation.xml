@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.empresa.finanzas1.ui.home.VistaGeneralFragment"
+        android:name="com.empresa.finanzas1.ui.vista_general.VistaGeneralFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/vista_general" />
 
@@ -22,4 +22,14 @@
         android:name="com.empresa.finanzas1.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.empresa.finanzas1.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/registrarTipoMovimientoFragment"
+        android:name="com.empresa.finanzas1.RegistrarTipoMovimientoFragment"
+        android:label="fragment_registrar_tipo_movimiento"
+        tools:layout="@layout/fragment_registrar_tipo_movimiento" />
 </navigation>

@@ -14,6 +14,9 @@ class Movimiento {
     var tipoMovimiento = 1
     var flujo = 1//1 entrada 2 salida
 
+    /*
+    Nombre de columnas
+     */
     companion object {
         const val ID_MOVIMIENTO = "id_movimiento"
         const val VALOR_MOVIMIENTO = "valor_movimiento"

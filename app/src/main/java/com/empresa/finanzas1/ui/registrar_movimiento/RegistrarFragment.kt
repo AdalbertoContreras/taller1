@@ -10,20 +10,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.empresa.finanzas1.R
 import com.empresa.finanzas1.modelo.Movimiento
+import com.empresa.finanzas1.modelo.Tipo_movimiento
 import com.empresa.finanzas1.sqlite.MovimientoSqlite
+import com.empresa.finanzas1.sqlite.TipoMovimientoSqlite
 import kotlinx.android.synthetic.main.registrar_movimiento.*
 import java.lang.NumberFormatException
 import java.util.*
+import kotlin.collections.ArrayList
 
 class RegistrarFragment : Fragment() {
-
     private lateinit var tipo_movimiento_spinner: Spinner
     private lateinit var varlo_textField: EditText
     private lateinit var registrarViewModel: RegistrarViewModel
     private lateinit var registrar_button: Button
     private lateinit var entrada_RadioButton: RadioButton
     private lateinit var gasto_RadioButton: RadioButton
-    private val tipo_movimientos = listOf("Transporte", "Comida", "Otros")
+    private lateinit var tipo_movimientos: ArrayList<Tipo_movimiento>
     private var root = view
 
     override fun onCreateView(
@@ -74,13 +76,24 @@ class RegistrarFragment : Fragment() {
     }
 
     private fun llenar_categorias() {
-
+        tipo_movimientos = TipoMovimientoSqlite().consultar(requireContext())
+        val lista = toArrayString()
         val arrayAdapter: ArrayAdapter<*> = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_item,
-            tipo_movimientos!!
+            lista!!
         )
         tipo_movimiento_spinner.adapter = arrayAdapter
         tipo_movimiento_spinner.setSelection(0)
+    }
+
+    fun toArrayString(): ArrayList<String>
+    {
+        var lista = ArrayList<String>()
+        for(item in tipo_movimientos)
+        {
+            lista.add(item.nombreTipoMovimiento)
+        }
+        return lista
     }
 }

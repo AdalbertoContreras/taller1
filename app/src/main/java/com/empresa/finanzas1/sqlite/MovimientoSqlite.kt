@@ -7,6 +7,7 @@ import com.empresa.finanzas1.modelo.Movimiento
 import java.util.*
 
 class MovimientoSqlite : Movimientoutilidades {
+
     fun agregar(context: Context?, movimiento: Movimiento?): Boolean {
         val values: ContentValues = toContentvalues(movimiento)
         return SqliteInterfas().insert(context, TABLE_NAME, Movimiento.ID_MOVIMIENTO, values)
