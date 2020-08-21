@@ -1,5 +1,6 @@
 package com.empresa.finanzas1.sqlite
 
+import android.util.Log
 import com.empresa.finanzas1.modelo.Movimiento
 
 interface Movimientoutilidades {
@@ -14,7 +15,14 @@ interface Movimientoutilidades {
     }
 
     fun porRangoDeFecha(fechaA: String, fechaB: String): String? {
-        return "SELECT * FROM " + TABLE_NAME + " where " + Movimiento.FECHA_MOVIMIENTO + ">=" + fechaA  + " AND ${Movimiento.FECHA_MOVIMIENTO} <= $fechaB ORDER BY " + Movimiento.ID_MOVIMIENTO + " DESC"
+        val consulta = "SELECT * FROM $TABLE_NAME where date(${Movimiento.FECHA_MOVIMIENTO}) >= date('$fechaA') AND date(${Movimiento.FECHA_MOVIMIENTO}) <= date('$fechaB') ORDER BY ${Movimiento.ID_MOVIMIENTO} DESC"
+        return consulta
+    }
+
+    fun porFecha(fechaA: String): String? {
+        val consulta = "SELECT * FROM $TABLE_NAME where date(${Movimiento.FECHA_MOVIMIENTO}) = date('$fechaA') ORDER BY ${Movimiento.ID_MOVIMIENTO} DESC"
+        Log.d("Consulta", consulta)
+        return consulta
     }
 
     val drop_table: String

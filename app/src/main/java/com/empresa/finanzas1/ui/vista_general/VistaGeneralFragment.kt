@@ -1,6 +1,7 @@
 package com.empresa.finanzas1.ui.vista_general
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,9 +52,11 @@ class VistaGeneralFragment : Fragment() {
         valorTotal = 0.0
         valorGasto = 0.0
         valorEntrada = 0.0
+        //var movimientos = MovimientoSqlite().movimientosporRangoDeFecha(context)
         var movimientos = MovimientoSqlite().consultar(context)
         for(item in movimientos!!.iterator())
         {
+            Log.d("Flujo", "${item.flujo}")
             valorTotal += item.valorMovimiento
             if(item.flujo == 1)
             {

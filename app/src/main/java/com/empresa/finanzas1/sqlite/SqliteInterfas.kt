@@ -14,6 +14,7 @@ class SqliteInterfas {
     ): Boolean {
         val conexionSQLiteHelper = ConexionSQLiteHelper(context, null)
         val sqLiteDatabase = conexionSQLiteHelper.writableDatabase
+        Log.d("Sql", values.toString())
         val respuesta = sqLiteDatabase.insert(TABLE_NAME, columHack, values)
         Log.d("sqliteInterfas", respuesta.toString() + "Agregado")
         sqLiteDatabase.close()

@@ -1,4 +1,4 @@
-package com.empresa.finanzas1.ui.slideshow
+package com.empresa.finanzas1.ui.consultarMovimientosPorFecha
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

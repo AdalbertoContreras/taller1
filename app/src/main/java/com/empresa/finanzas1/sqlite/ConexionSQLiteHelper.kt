@@ -38,6 +38,26 @@ class ConexionSQLiteHelper
              */
             db.execSQL(MovimientoSqlite().SQL_CREATE_ENTRIES)
             db.execSQL(TipoMovimientoSqlite().SQL_CREATE_ENTRIES)
+            var consultas = listOf("insert into movimiento values(1, 12500, '', '2020-08-01', 1, 1)",
+                "insert into movimiento values(2, 12500, '', '2020-08-01', 1, 2)",
+                "insert into movimiento values(3, 12500, '', '2020-08-01', 2, 1)",
+                "insert into movimiento values(4, 12500, '', '2020-08-02', 3, 1)",
+                "insert into movimiento values(5, 12500, '', '2020-08-08', 3, 1)",
+                "insert into movimiento values(6, 12500, '', '2020-08-08', 2, 1)",
+                "insert into movimiento values(7, 12500, '', '2020-08-15', 2, 2)",
+                "insert into movimiento values(8, 12500, '', '2020-08-17', 1, 2)",
+                "insert into movimiento values(9, 12500, '', '2020-08-20', 1, 2)",
+                "insert into movimiento values(10, 12500, '', '2020-08-20', 2, 2)",
+                "insert into movimiento values(11, 12500, '', '2020-08-20', 2, 1)",
+                "insert into movimiento values(12, 12500, '', '2020-08-20', 1, 2)",
+                "insert into tipo_movimiento values(1, 'Transporte')",
+                "insert into tipo_movimiento values(2, 'Alimento')",
+                "insert into tipo_movimiento values(3, 'Ropa')",
+                "insert into tipo_movimiento values(4, 'Deuda')")
+            for(consulta in consultas)
+            {
+                db.execSQL(consulta)
+            }
         } catch (e: SQLException) {
             Log.d("sqlite", "base de datos no creada")
         }
@@ -82,7 +102,7 @@ class ConexionSQLiteHelper
     }
 
     companion object {
-        private const val nombre_database = "app_cobrador"
-        private const val version_database = 3
+        private const val nombre_database = "app_finanza"
+        private const val version_database = 11
     }
 }

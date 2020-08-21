@@ -1,6 +1,7 @@
 package com.empresa.finanzas1.ui.registrar_movimiento
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +56,7 @@ class RegistrarFragment : Fragment() {
                     movimientoRegistrar.tipoMovimiento = tipo_movimiento_spinner.selectedItemPosition
                     movimientoRegistrar.flujo = if(entrada_RadioButton.isChecked) 1 else 2
                     val date = Calendar.getInstance()
-                    val dateString = "${date.get(Calendar.YEAR)}-${date.get(Calendar.MONTH)}-${date.get(Calendar.DAY_OF_MONTH)}"
+                    val dateString = "${date.get(Calendar.YEAR)}-${if(date.get(Calendar.MONTH) < 10) "0" + (date.get(Calendar.MONTH) + 1) else (date.get(Calendar.MONTH) + 1)}-${date.get(Calendar.DAY_OF_MONTH)}"
                     movimientoRegistrar.fechaMovimiento = dateString
                     if(MovimientoSqlite().agregar(context, movimientoRegistrar))
                     {

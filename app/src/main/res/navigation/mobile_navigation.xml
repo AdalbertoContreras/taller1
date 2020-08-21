@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.empresa.finanzas1.ui.slideshow.SlideshowFragment"
+        android:name="com.empresa.finanzas1.ui.consultarMovimientosPorFecha.consultarMovimientosPorFechaFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_consulta_por_fecha" />
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.empresa.finanzas1.InfoFragment"

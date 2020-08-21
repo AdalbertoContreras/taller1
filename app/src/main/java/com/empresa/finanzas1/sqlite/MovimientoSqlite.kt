@@ -3,6 +3,7 @@ package com.empresa.finanzas1.sqlite
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.util.Log
 import com.empresa.finanzas1.modelo.Movimiento
 import java.util.*
 
@@ -13,8 +14,18 @@ class MovimientoSqlite : Movimientoutilidades {
         return SqliteInterfas().insert(context, TABLE_NAME, Movimiento.ID_MOVIMIENTO, values)
     }
 
-    fun consultar(context: Context?): ArrayList<Movimiento>? {
+    fun consultar(context: Context?): ArrayList<Movimiento> {
         val cursor = SqliteInterfas().select(context, consulta)
+        return recorrerCursor(cursor)
+    }
+
+    fun movimientosporRangoDeFecha(context: Context?, fechaA: String, fechaB: String): ArrayList<Movimiento> {
+        val cursor = SqliteInterfas().select(context, porRangoDeFecha(fechaA, fechaB))
+        return recorrerCursor(cursor)
+    }
+
+    fun movimientosporFecha(context: Context?): ArrayList<Movimiento>? {
+        val cursor = SqliteInterfas().select(context, porFecha("2020-08-19"))
         return recorrerCursor(cursor)
     }
 
@@ -43,8 +54,9 @@ class MovimientoSqlite : Movimientoutilidades {
         val abonos: ArrayList<Movimiento> = ArrayList<Movimiento>()
         if (cursor.moveToFirst()) {
             do {
-                val abono: Movimiento = cursorToCobrador(cursor)
-                abonos.add(abono)
+                val movimiento: Movimiento = cursorToCobrador(cursor)
+                Log.d("Fecha", "${movimiento.fechaMovimiento}")
+                abonos.add(movimiento)
             } while (cursor.moveToNext())
         }
         return abonos
@@ -54,6 +66,7 @@ class MovimientoSqlite : Movimientoutilidades {
         val values = ContentValues()
         if(modelo != null)
         {
+            Log.d("Flujo", "${modelo.flujo}")
             values.put(Movimiento.VALOR_MOVIMIENTO, modelo.valorMovimiento)
             values.put(Movimiento.DESCRIPCION, modelo.descripcion)
             values.put(Movimiento.FECHA_MOVIMIENTO, modelo.fechaMovimiento)
@@ -70,7 +83,7 @@ class MovimientoSqlite : Movimientoutilidades {
         modelo.descripcion = cursor.getString(2)
         modelo.fechaMovimiento = cursor.getString(3)
         modelo.tipoMovimiento = cursor.getInt(4)
-        modelo.idMovimiento = cursor.getInt(5)
+        modelo.flujo = cursor.getInt(5)
         return modelo
     }
 }
