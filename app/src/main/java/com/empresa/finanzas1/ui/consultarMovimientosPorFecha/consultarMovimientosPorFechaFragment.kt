@@ -58,10 +58,11 @@ class consultarMovimientosPorFechaFragment : Fragment() {
                 DatePikerFragment.newInstance(OnDateSetListener { datePicker, year, month, day -> // +1 because January is zero
                     val selectedDate : String = "$year-${(if(month < 10) "0" + (month + 1) else (month + 1))}-${(if(day < 10) "0" + day else day)}"
                     fechaFinal.text = Editable.Factory.getInstance().newEditable(selectedDate)
+                    consultarMovimientos()
                 })
 
             newFragment.show(requireActivity().supportFragmentManager, "datePicker")
-            consultarMovimientos()
+
         }
         return root
     }
@@ -71,7 +72,7 @@ class consultarMovimientosPorFechaFragment : Fragment() {
         listaMovimientos = MovimientoSqlite().movimientosporRangoDeFecha(requireContext(), fechaInicial.text.toString(), fechaFinal.text.toString())
         //listaMovimientos = MovimientoSqlite().consultar(requireContext())
         listaRecycler.layoutManager = GridLayoutManager(requireContext(), 1)
-        var ItemMovimientoAdapter = ItemMovimiento(listaMovimientos)
+        var ItemMovimientoAdapter = ItemMovimiento(listaMovimientos, requireActivity().supportFragmentManager)
         listaRecycler.adapter = ItemMovimientoAdapter
     }
 }

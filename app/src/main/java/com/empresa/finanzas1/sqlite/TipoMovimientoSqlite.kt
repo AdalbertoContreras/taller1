@@ -18,6 +18,19 @@ class TipoMovimientoSqlite: TipoMovimientoUtilidades {
         return recorrerCursor(cursor)
     }
 
+    fun ConsultarPorIdTipoMovimiento(context: Context?, id: Int): Tipo_movimiento? {
+        val cursor = SqliteInterfas().select(context, porIdTipoMovimiento(id))
+        val lista = recorrerCursor(cursor)
+        if(lista.isEmpty())
+        {
+            return null
+        }
+        else
+        {
+            return lista[0]
+        }
+    }
+
     fun consultarPorNombre(context: Context?, nombre: String): ArrayList<Tipo_movimiento> {
         val cursor = SqliteInterfas().select(context, porNombre(nombre))
         return recorrerCursor(cursor)

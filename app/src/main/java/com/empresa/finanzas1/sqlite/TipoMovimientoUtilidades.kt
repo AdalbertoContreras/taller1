@@ -9,6 +9,11 @@ interface TipoMovimientoUtilidades {
     val consulta: String
         get() = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + Tipo_movimiento.ID_TIPO_MOVIMIENTO + " ASC"
 
+    fun porIdTipoMovimiento(id: Int) : String
+    {
+        return "SELECT * FROM " + TABLE_NAME + " where ${Tipo_movimiento.ID_TIPO_MOVIMIENTO} = $id"
+    }
+
     fun porNombre(nombre: String) : String
     {
         return "SELECT * FROM " + TABLE_NAME + " where ${Tipo_movimiento.NOMBRE_TIPO_MOVIMIENTO} = '$nombre'"
